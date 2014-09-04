@@ -1,3 +1,4 @@
+import sys
 import socket
 import pydash as _
 import requests
@@ -21,7 +22,7 @@ records = res.json()['response']['recs']['objs']
 home =  _.select(records, dict(name='%s.%s' % (SUBDOMAIN, DOMAIN)))[0]
 
 if socket.gethostbyname(socket.gethostname()) != LOCAL:
-    return
+    sys.exit()
 
 ip = requests.get('http://httpbin.org/ip').json()['origin']
 
